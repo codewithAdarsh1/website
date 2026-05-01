@@ -10,8 +10,8 @@ export default function Home() {
       {/* Fixed 3D canvas — always behind everything */}
       <BasReliefCanvas />
 
-      {/* Content layers — z-index 10+ so they float over canvas */}
-      <div className="relative z-10">
+      {/* Content layers — z-index 50+ so they float over canvas */}
+      <div className="relative z-[50]">
         <HeroSection />
         <ManifestoSection />
         <HorizontalScroll />

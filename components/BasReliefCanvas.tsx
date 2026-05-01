@@ -379,3 +379,5 @@ export default function BasReliefCanvas() {
     </div>
   );
 }
+
+useGLTF.preload("/bas-relief.glb");

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+import GlobalGrain from "@/components/GlobalGrain";
 import { Cinzel_Decorative, Cormorant_Garamond, DM_Sans } from "next/font/google";
 
 const cinzel = Cinzel_Decorative({
@@ -42,7 +43,8 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${cinzel.variable} ${cormorant.variable} ${dm.variable}`}
     >
-      <body className="bg-[var(--bg)] text-[var(--ink)] antialiased cursor-none">
+      <body className="bg-[var(--bg)] text-[var(--ink)] antialiased cursor-none overflow-x-hidden">
+        <GlobalGrain />
         <SmoothScroll>
           {children}
         </SmoothScroll>

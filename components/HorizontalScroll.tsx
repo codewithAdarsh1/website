@@ -76,7 +76,7 @@ export default function HorizontalScroll() {
                 {p.num}
               </span>
               <h2
-                className="font-cormorant text-[var(--ink)] leading-[0.9] whitespace-pre-line tracking-tight"
+                className="font-cormorant text-[var(--ink)] leading-[0.9] whitespace-pre-line tracking-tight drop-shadow-sm"
                 style={{ fontSize: "clamp(3.5rem, 8vw, 8.5rem)" }}
               >
                 {p.title}

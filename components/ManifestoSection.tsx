@@ -30,29 +30,22 @@ export default function ManifestoSection() {
     const ctx = gsap.context(() => {
       const els = wordsRef.current.filter(Boolean) as HTMLSpanElement[];
 
-      // Each word: scrub in from opacity 0.07 to 1
-      // Use individual ScrollTriggers for precise per-word control
+      // Each word: scroll in/out logic
       els.forEach((el, i) => {
-        const progress = i / (els.length - 1); // 0 → 1
+        const wordOffset = i / els.length;
 
         gsap.fromTo(
           el,
-          { opacity: 0.07 },
+          { opacity: 0.1, y: 10 },
           {
             opacity: 1,
-            ease:    "none",
+            y: 0,
+            ease: "none",
             scrollTrigger: {
-              trigger:    containerRef.current,
-              start:      `top top`,
-              end:        `bottom top`,
-              scrub:      1.2,
-              // Each word reveals progressively through the scroll
-              // words[0] reveals at 0% scroll, words[last] at 85% scroll
-              onUpdate: (self) => {
-                const wordProgress = progress;
-                const rawOpacity   = (self.progress - wordProgress * 0.8) / 0.2;
-                el.style.opacity   = String(Math.min(1, Math.max(0.07, rawOpacity)));
-              },
+              trigger: containerRef.current,
+              start: () => `top+=${window.innerHeight * 0.5 + wordOffset * window.innerHeight} center`,
+              end: () => `top+=${window.innerHeight * 1.5 + wordOffset * window.innerHeight} center`,
+              scrub: 1,
             },
           }
         );
@@ -82,15 +75,15 @@ export default function ManifestoSection() {
     <section
       ref={containerRef}
       id="culture"
-      className="relative z-10"
-      style={{ height: "260vh" }}
+      className="relative z-20"
+      style={{ height: "350vh" }}
     >
       {/* Sticky viewport — text is centered and stays put while scrolling */}
       <div
         ref={stickyRef}
-        className="sticky top-0 h-[100dvh] flex items-center justify-center"
+        className="sticky top-0 h-[100dvh] flex items-center justify-center overflow-hidden"
         style={{
-          padding: "0 clamp(2rem, 12vw, 14rem)",
+          padding: "0 clamp(3rem, 15vw, 18rem)",
           opacity: 0,
         }}
       >
@@ -126,10 +119,7 @@ export default function ManifestoSection() {
                 </span>
                 {/* Space between words (not after last) */}
                 {i < words.length - 1 && (
-                  <span style={{ opacity: 0.07, willChange: "opacity" }} ref={() => {
-                    // Give spaces the same opacity as the previous word
-                    // (they share the word's reveal)
-                  }}>{" "}</span>
+                  <span style={{ opacity: 0.15, willChange: "opacity" }}>{" "}</span>
                 )}
               </span>
             );

@@ -9,9 +9,9 @@
 /* ── Design tokens ──────────────────────────────────────────────────────────── */
 :root {
   /* Background: warm plaster grey matching the reference photo */
-  --bg:  #dcdcdc;
+  --bg:  #f0f0f0;
   /* Ink: very dark warm brown/black */
-  --ink: #111111;
+  --ink: #050505;
 
   /* Typographic scale */
   --step--1: clamp(0.75rem,  0.7rem + 0.25vw,  0.875rem);
@@ -91,10 +91,7 @@ body::after {
   inset:          0;
   pointer-events: none;
   z-index:        9998; /* below cursor (9999) */
-  opacity:        0.08; /* Boosted to match the visible cement texture in the image */
-  /* CSS-only noise using repeating gradient — very subtle */
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
+  opacity:        0.0; /* Fully using GlobalGrain now */
 }
 
 /* ── Utility classes ─────────────────────────────────────────────────────────── */
